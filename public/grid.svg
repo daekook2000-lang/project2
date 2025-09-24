@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <path d="M11 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M22 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M33 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M44 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M55 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M66 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M77 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M88 0V100" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 11L100 11" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 22L100 22" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 33L100 33" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 44L100 44" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 55L100 55" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 66L100 66" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 77L100 77" stroke="#E5E7EB" stroke-width="0.5"/>
+  <path d="M0 88L100 88" stroke="#E5E7EB" stroke-width="0.5"/>
+</svg>
