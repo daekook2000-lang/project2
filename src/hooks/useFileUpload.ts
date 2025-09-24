@@ -2,7 +2,12 @@
 
 import { useState } from 'react'
 import { AnalysisResult, UploadApiResponse } from '@/lib/types/database.types'
-import { WebhookResponse, AnalysisData } from '@/lib/types/ai-analysis.types'
+import {
+  WebhookResponse,
+  AnalysisData,
+  DetailedWebhookResponse,
+  DetailedAnalysisData
+} from '@/lib/types/ai-analysis.types'
 
 interface UploadState {
   uploading: boolean
@@ -58,24 +63,25 @@ export function useFileUpload() {
       // Simulate progress
       setUploadState(prev => ({ ...prev, progress: 25 }))
 
-      // Check if webhook URL is configured
-      const webhookUrl = 'https://daekook2000.app.n8n.cloud/webhook-test/62461ec8-1135-4c58-a9d0-0cfacd006298'
-      
-      // For testing purposes, let's try the webhook first
-      console.log("Attempting to call webhook:", webhookUrl)
+      // Use Next.js API endpoint to proxy the request to n8n webhook
+      // Development: use test endpoint, Production: use real n8n webhook
+      const proxyUrl = process.env.NODE_ENV === 'development'
+        ? '/api/test-webhook'
+        : '/api/upload-analysis'
 
-      // Real API call to n8n webhook
+      console.log("Sending image to analysis API:", proxyUrl)
+
+      // API call to our Next.js endpoint (which will proxy to n8n)
       setUploadState(prev => ({ ...prev, progress: 50 }))
 
-      // Set up timeout for webhook request
+      // Set up timeout for API request
       const controller = new AbortController()
       const timeoutId = setTimeout(() => {
         controller.abort()
-        console.error('Webhook request timeout after 60 seconds')
+        console.error('API request timeout after 60 seconds')
       }, 60000) // 60 seconds timeout
 
-      console.log('Sending image to AI analysis webhook:', webhookUrl)
-      const response = await fetch(webhookUrl, {
+      const response = await fetch(proxyUrl, {
         method: 'POST',
         body: formData,
         signal: controller.signal,
@@ -92,23 +98,29 @@ export function useFileUpload() {
 
       if (!response.ok) {
         const errorText = await response.text()
-        console.error('Webhook error details:', {
+        console.error('API error details:', {
           status: response.status,
           statusText: response.statusText,
-          headers: Object.fromEntries(response.headers.entries()),
           body: errorText,
-          url: webhookUrl
+          url: proxyUrl
         })
-        throw new Error(`Webhook 오류 (${response.status}): ${response.statusText} - ${errorText}`)
+        throw new Error(`API 오류 (${response.status}): ${response.statusText} - ${errorText}`)
       }
 
-      const responseText = await response.text()
-      console.log('Webhook response details:', {
-        status: response.status,
-        headers: Object.fromEntries(response.headers.entries()),
-        body: responseText,
-        url: webhookUrl
+      // API 응답을 JSON으로 파싱
+      const apiResult = await response.json()
+      console.log('API response:', {
+        success: apiResult.success,
+        message: apiResult.message,
+        hasData: !!apiResult.data
       })
+
+      if (!apiResult.success) {
+        throw new Error(apiResult.error || '분석에 실패했습니다.')
+      }
+
+      // API가 반환한 웹훅 데이터를 사용
+      const responseText = JSON.stringify(apiResult.data)
       
       let webhookResult: WebhookResponse[] | WebhookResponse | any
       try {
@@ -118,31 +130,73 @@ export function useFileUpload() {
         throw new Error('웹훅 응답을 파싱할 수 없습니다.')
       }
 
-      // webhook 응답 처리 - 배열 또는 단일 객체일 수 있음
-      let result: AnalysisData
-      
+      // webhook 응답 처리 - 상세 분석과 기본 분석 모두 지원
+      let result: AnalysisData | DetailedAnalysisData
+
       if (Array.isArray(webhookResult)) {
         // 배열 형태의 webhook 응답 처리
         const firstResponse = webhookResult[0]
         if (!firstResponse?.output?.success) {
           throw new Error('AI 분석에 실패했습니다.')
         }
-        result = firstResponse.output.data
+
+        // 상세 분석인지 기본 분석인지 확인
+        if (firstResponse.output.data.overall_description) {
+          // 상세 분석 데이터
+          result = firstResponse.output.data as DetailedAnalysisData
+        } else {
+          // 기본 분석 데이터
+          result = firstResponse.output.data as AnalysisData
+        }
       } else if (webhookResult?.output?.success) {
         // 단일 객체 형태의 webhook 응답 처리
-        result = webhookResult.output.data
+        if (webhookResult.output.data.overall_description) {
+          // 상세 분석 데이터
+          result = webhookResult.output.data as DetailedAnalysisData
+        } else {
+          // 기본 분석 데이터
+          result = webhookResult.output.data as AnalysisData
+        }
       } else {
         // 예상과 다른 형태의 응답인 경우
         throw new Error('웹훅 응답 형식이 올바르지 않습니다.')
       }
 
-      // 결과 유효성 검사
-      if (!result?.items || !Array.isArray(result.items) || result.items.length === 0) {
-        throw new Error('분석된 음식 정보를 찾을 수 없습니다.')
+      // 상세 분석 데이터인 경우 기본 형식으로 변환
+      if (result && 'overall_description' in result) {
+        const detailedResult = result as DetailedAnalysisData
+        // 상세 분석을 기본 형식으로 변환 (UI 호환성을 위해)
+        result = {
+          items: [{
+            foodName: detailedResult.food_type_and_characteristics.food_name,
+            confidence: 0.95, // 기본값
+            quantity: "1 인분",
+            calories: parseInt(detailedResult.calorie_estimation.total_estimated_calories.split(' ')[0]),
+            nutrients: {
+              carbohydrates: { value: 0, unit: "g" }, // 기본값
+              protein: { value: 0, unit: "g" }, // 기본값
+              fat: { value: 0, unit: "g" }, // 기본값
+              sugars: { value: 0, unit: "g" }, // 기본값
+              sodium: { value: 0, unit: "mg" } // 기본값
+            }
+          }],
+          summary: {
+            totalCalories: parseInt(detailedResult.calorie_estimation.total_estimated_calories.split(' ')[0]),
+            totalCarbohydrates: { value: 0, unit: "g" }, // 기본값
+            totalProtein: { value: 0, unit: "g" }, // 기본값
+            totalFat: { value: 0, unit: "g" } // 기본값
+          }
+        }
       }
 
-      if (!result?.summary) {
-        throw new Error('영양 정보 요약을 찾을 수 없습니다.')
+      // 결과 유효성 검사
+      if ('items' in result && result.items) {
+        if (!result.items || !Array.isArray(result.items) || result.items.length === 0) {
+          throw new Error('분석된 음식 정보를 찾을 수 없습니다.')
+        }
+        if (!result.summary) {
+          throw new Error('영양 정보 요약을 찾을 수 없습니다.')
+        }
       }
 
       // 분석 완료 - 바로 결과 반환

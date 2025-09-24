@@ -1,5 +1,6 @@
 // AI 이미지 분석 webhook 응답 타입 정의
 
+// 기존 타입들 (호환성을 위해 유지)
 export interface NutrientValue {
   value: number;
   unit: string;
@@ -40,6 +41,71 @@ export interface AIAnalysisOutput {
 
 export interface WebhookResponse {
   output: AIAnalysisOutput;
+}
+
+// 새로운 상세 분석 타입들
+export interface VitaminMineralInfo {
+  [key: string]: string;
+}
+
+export interface CalorieBreakdown {
+  instant_ramen_per_serving: string;
+  egg_yolk_per_item: string;
+  total_estimated_calories: string;
+  notes: string;
+}
+
+export interface MainIngredientsAnalysis {
+  side_dish_ingredients: string;
+  additional_toppings_ingredients: {
+    egg_yolk: string;
+    green_onion: string;
+  };
+  soup_ingredients: string;
+  noodle_ingredients: string;
+  dried_flakes_ingredients: string;
+}
+
+export interface NutrientAnalysis {
+  sodium: string;
+  proteins: string;
+  carbohydrates: string;
+  vitamins_minerals: VitaminMineralInfo;
+  fats: string;
+}
+
+export interface FoodCharacteristics {
+  soup: string;
+  noodle: string;
+  toppings: {
+    egg_yolk: string;
+    green_onion: string;
+    dried_flakes: string;
+  };
+  side_dish: string;
+}
+
+export interface FoodTypeCharacteristics {
+  characteristics: FoodCharacteristics;
+  food_name: string;
+}
+
+export interface DetailedAnalysisData {
+  overall_description: string;
+  main_ingredients_analysis: MainIngredientsAnalysis;
+  nutrient_analysis: NutrientAnalysis;
+  overall_analysis: string;
+  food_type_and_characteristics: FoodTypeCharacteristics;
+  calorie_estimation: CalorieBreakdown;
+}
+
+export interface DetailedAIAnalysisOutput {
+  success: boolean;
+  data: DetailedAnalysisData;
+}
+
+export interface DetailedWebhookResponse {
+  output: DetailedAIAnalysisOutput;
 }
 
 // 데이터베이스 저장용 타입 (현재 스키마에 맞춤)
