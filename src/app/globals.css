@@ -72,17 +72,16 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(45deg, #10b981, #3b82f6);
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

@@ -13,8 +13,9 @@ export function Footer() {
               복잡한 입력 없이 AI가 모든 것을 자동으로 처리합니다.
             </p>
             <div className="flex space-x-4">
-              <button className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-full font-medium hover:from-green-700 hover:to-blue-700 transition-all duration-200">
-                지금 시작하기
+              <button className="group relative bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-2xl font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                <span className="relative z-10">지금 시작하기</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-blue-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </div>
           </div>

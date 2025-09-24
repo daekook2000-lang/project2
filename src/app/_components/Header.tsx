@@ -20,9 +20,10 @@ export function Header() {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-2 rounded-full font-medium hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                className="group relative bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-2xl font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                로그인
+                <span className="relative z-10">로그인</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-blue-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
             </div>
           </div>
@@ -49,8 +50,9 @@ export function Header() {
                   placeholder="비밀번호"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 />
-                <button className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 rounded-lg font-medium hover:from-green-700 hover:to-blue-700 transition-all duration-200">
-                  로그인 (임시)
+                <button className="group relative w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 rounded-2xl font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  <span className="relative z-10">로그인 (임시)</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-blue-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </button>
               </div>
               <button

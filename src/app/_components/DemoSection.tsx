@@ -112,135 +112,188 @@ export function DemoSection() {
   ]
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white w-full">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50/50 to-white w-full">
       <div className="max-w-7xl mx-auto w-full">
         {/* 섹션 헤더 */}
-        <div className="text-center mb-16 w-full flex flex-col items-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-20 w-full flex flex-col items-center">
+          <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6">
+            라이브 데모
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             실제 사용 모습을 
-            <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"> 미리보기</span>
+            <span className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent"> 미리보기</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            복잡한 설명보다는 직접 보는 것이 더 확실하죠. 실제 앱 화면을 체험해보세요!
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto font-light">
+            복잡한 설명보다는 직접 보는 것이 더 확실하죠. 
+            <br className="hidden sm:block" />
+            실제 앱 화면을 체험해보세요!
           </p>
         </div>
 
         {/* 데모 인터페이스 */}
-        <div className="max-w-4xl mx-auto w-full flex justify-center">
-          <div className="bg-gray-900 rounded-3xl p-4 shadow-2xl">
-            {/* 폰 프레임 */}
-            <div className="bg-white rounded-2xl overflow-hidden">
-              {/* 상태바 */}
-              <div className="h-6 bg-gray-50 flex items-center justify-between px-4 text-xs text-gray-600">
-                <span>9:41</span>
-                <div className="flex space-x-1">
-                  <div className="w-4 h-2 bg-green-500 rounded-sm"></div>
-                  <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
-                  <div className="w-4 h-2 bg-gray-300 rounded-sm"></div>
-                </div>
-              </div>
+        <div className="max-w-5xl mx-auto w-full">
+          <div className="flex justify-center">
+            {/* 모바일 프레임 */}
+            <div className="relative">
+              {/* 폰 외곽 프레임 */}
+              <div className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-[3rem] p-2 shadow-2xl">
+                {/* 화면 영역 */}
+                <div className="bg-black rounded-[2.5rem] p-1">
+                  <div className="bg-white rounded-[2rem] overflow-hidden w-80 h-[600px] relative">
+                    {/* 노치 */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-20"></div>
+                    
+                    {/* 상태바 */}
+                    <div className="h-12 bg-white flex items-center justify-between px-6 pt-6 text-sm text-gray-800 font-medium relative z-10">
+                      <span>9:41</span>
+                      <div className="flex items-center space-x-1">
+                        <div className="flex space-x-1">
+                          <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
+                          <div className="w-1 h-1 bg-gray-800 rounded-full"></div>
+                        </div>
+                        <div className="w-6 h-3 border-2 border-gray-800 rounded-sm relative ml-2">
+                          <div className="absolute right-[-2px] top-1/2 transform -translate-y-1/2 w-1 h-1 bg-gray-800 rounded-full"></div>
+                          <div className="w-full h-full bg-green-500 rounded-sm"></div>
+                        </div>
+                      </div>
+                    </div>
 
-              {/* 앱 헤더 */}
-              <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white p-4">
-                <h3 className="text-lg font-bold text-center">AI 식단 기록</h3>
-              </div>
+                    {/* 앱 헤더 */}
+                    <div className="bg-gradient-to-r from-green-500 to-blue-500 text-white px-6 py-4">
+                      <h3 className="text-lg font-bold text-center">AI 식단 기록</h3>
+                    </div>
 
-              {/* 데모 콘텐츠 */}
-              <div className="p-6">
-                {demoSteps[activeDemo].content}
-              </div>
+                    {/* 데모 콘텐츠 */}
+                    <div className="p-6 h-[480px] overflow-hidden">
+                      {demoSteps[activeDemo].content}
+                    </div>
 
-              {/* 단계 네비게이션 */}
-              <div className="p-6 pt-0">
-                <div className="flex justify-center space-x-2 mb-4">
-                  {demoSteps.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveDemo(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                        index === activeDemo 
-                          ? 'bg-gradient-to-r from-green-500 to-blue-500' 
-                          : 'bg-gray-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="text-center">
-                  <h4 className="font-semibold text-gray-800 mb-1">
-                    {demoSteps[activeDemo].title}
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    {demoSteps[activeDemo].description}
-                  </p>
+                    {/* 하단 홈 인디케이터 */}
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-800 rounded-full"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 자동 재생 컨트롤 */}
+          {/* 단계 네비게이션 */}
+          <div className="mt-12 text-center">
+            <div className="flex justify-center space-x-3 mb-6">
+              {demoSteps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveDemo(index)}
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    index === activeDemo 
+                      ? 'bg-gradient-to-r from-green-500 to-blue-500 scale-125' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+            <div className="max-w-md mx-auto">
+              <h4 className="text-xl font-bold text-gray-900 mb-2">
+                {demoSteps[activeDemo].title}
+              </h4>
+              <p className="text-gray-600">
+                {demoSteps[activeDemo].description}
+              </p>
+            </div>
+          </div>
+
+          {/* 컨트롤 버튼 */}
           <div className="flex justify-center mt-8 space-x-4">
             <button
               onClick={() => setActiveDemo(Math.max(0, activeDemo - 1))}
               disabled={activeDemo === 0}
-              className="px-6 py-3 bg-gray-200 text-gray-700 rounded-full font-medium hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              className="group px-8 py-3 bg-white border-2 border-gray-300 text-gray-700 rounded-2xl font-semibold hover:border-gray-400 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              ← 이전
+              <span className="flex items-center">
+                <svg className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                이전
+              </span>
             </button>
             <button
               onClick={() => setActiveDemo((activeDemo + 1) % demoSteps.length)}
-              className="px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-full font-medium hover:from-green-700 hover:to-blue-700 transition-all duration-200"
+              className="group px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-2xl font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              다음 →
+              <span className="flex items-center">
+                다음
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
             </button>
           </div>
         </div>
 
-        {/* 추가 정보 */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <div className="text-center p-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* 주요 지표 */}
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-2">
+            <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">평균 3초</h3>
-            <p className="text-gray-600">업로드부터 결과 확인까지 걸리는 시간</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-gray-800">평균 3초</h3>
+            <p className="text-gray-600 text-lg group-hover:text-gray-700">업로드부터 결과 확인까지 걸리는 시간</p>
           </div>
           
-          <div className="text-center p-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-2">
+            <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">95% 정확도</h3>
-            <p className="text-gray-600">AI 음식 인식 및 칼로리 계산 정확도</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-gray-800">95% 정확도</h3>
+            <p className="text-gray-600 text-lg group-hover:text-gray-700">AI 음식 인식 및 칼로리 계산 정확도</p>
           </div>
           
-          <div className="text-center p-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-2">
+            <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">24시간</h3>
-            <p className="text-gray-600">언제든지 식단을 기록할 수 있어요</p>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-gray-800">24시간</h3>
+            <p className="text-gray-600 text-lg group-hover:text-gray-700">언제든지 식단을 기록할 수 있어요</p>
           </div>
         </div>
 
         {/* 최종 CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-8 lg:p-12">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-              이제 복잡한 식단 기록은 안녕! 👋
-            </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              사진 한 장으로 시작하는 스마트한 식단 관리. 
-              지금 바로 시작해서 더 건강한 습관을 만들어보세요.
-            </p>
-            <button className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-10 py-4 rounded-full font-semibold text-lg hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              무료로 시작하기 🚀
-            </button>
+        <div className="mt-24 text-center">
+          <div className="relative bg-gradient-to-br from-green-50 via-blue-50/50 to-purple-50/30 rounded-[3rem] p-12 lg:p-16 overflow-hidden">
+            {/* 배경 장식 */}
+            <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-green-400/10 to-blue-400/10 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-2xl"></div>
+            
+            <div className="relative z-10">
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                이제 복잡한 식단 기록은 안녕! 
+                <span className="inline-block animate-bounce">👋</span>
+              </h3>
+              <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto font-light">
+                사진 한 장으로 시작하는 스마트한 식단 관리. 
+                <br className="hidden sm:block" />
+                지금 바로 시작해서 더 건강한 습관을 만들어보세요.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button className="group relative bg-gradient-to-r from-green-600 to-blue-600 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:from-green-700 hover:to-blue-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2">
+                  <span className="relative z-10 flex items-center">
+                    무료로 시작하기
+                    <span className="ml-2 text-2xl group-hover:animate-pulse">🚀</span>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-blue-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+                <p className="text-sm text-gray-500 font-medium">
+                  ⭐ 이미 500+명이 사용 중
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

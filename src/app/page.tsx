@@ -7,7 +7,7 @@ import { Footer } from './_components/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       <Header />
       <main className="w-full">
         <HeroSection />
