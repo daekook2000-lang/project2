@@ -39,7 +39,7 @@ export default function Home() {
         </div>
 
         {/* CTA 버튼 */}
-        <div>
+        <div className="mt-32">
           <button className="group relative bg-gradient-to-r from-purple-600 to-pink-600 text-white px-20 py-8 rounded-3xl font-bold text-2xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-2xl hover:shadow-purple-500/25 transform hover:-translate-y-2">
             <span className="relative z-10">무료로 시작하기</span>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
