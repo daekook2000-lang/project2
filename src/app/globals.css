@@ -34,6 +34,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* 전체 페이지 중앙 정렬 강화 */
+#__next,
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 모든 섹션 중앙 정렬 */
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 텍스트 중앙 정렬 강화 */
+.text-center {
+  text-align: center !important;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Smooth scrolling */

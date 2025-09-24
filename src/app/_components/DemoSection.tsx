@@ -112,10 +112,10 @@ export function DemoSection() {
   ]
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white w-full">
+      <div className="max-w-7xl mx-auto w-full">
         {/* 섹션 헤더 */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 w-full flex flex-col items-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             실제 사용 모습을 
             <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"> 미리보기</span>

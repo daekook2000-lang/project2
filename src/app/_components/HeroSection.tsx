@@ -2,11 +2,11 @@ import Image from 'next/image'
 
 export function HeroSection() {
   return (
-    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center w-full">
+    <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="text-center w-full flex flex-col items-center">
           {/* 메인 헤드라인 */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-center w-full">
             사진 한 장으로
             <br />
             <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
@@ -15,13 +15,13 @@ export function HeroSection() {
           </h1>
           
           {/* 서브 헤드라인 */}
-          <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed text-center">
             복잡한 입력은 그만! AI가 자동으로 음식을 분석하고, 
             칼로리와 영양성분까지 계산해드립니다.
           </p>
 
           {/* CTA 버튼들 */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 w-full">
             <button className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-green-700 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               지금 시작하기
             </button>
@@ -108,7 +108,7 @@ export function HeroSection() {
           </div>
 
           {/* 신뢰도 지표 */}
-          <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-gray-500">
+          <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-gray-500 w-full">
             <div className="flex items-center space-x-2">
               <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
