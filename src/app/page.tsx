@@ -1,19 +1,23 @@
 import { HeroSection } from './_components/HeroSection'
-import { FeaturesSection } from './_components/FeaturesSection'
-import { HowItWorksSection } from './_components/HowItWorksSection'
+import { ProblemSection } from './_components/ProblemSection'
+import { SolutionSection } from './_components/SolutionSection'
 import { DemoSection } from './_components/DemoSection'
+import { BenefitsSection } from './_components/BenefitsSection'
+import { CTASection } from './_components/CTASection'
 import { Header } from './_components/Header'
 import { Footer } from './_components/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-white">
       <Header />
-      <main className="w-full">
+      <main>
         <HeroSection />
-        <FeaturesSection />
-        <HowItWorksSection />
+        <ProblemSection />
+        <SolutionSection />
         <DemoSection />
+        <BenefitsSection />
+        <CTASection />
       </main>
       <Footer />
     </div>
