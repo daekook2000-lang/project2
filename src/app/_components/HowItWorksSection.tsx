@@ -51,7 +51,7 @@ export function HowItWorksSection() {
         </div>
 
         {/* 스텝 카드들 */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 w-full max-w-6xl mx-auto">
           {steps.map((step, index) => (
             <div key={index} className="relative">
               {/* 연결선 (데스크탑에서만) */}

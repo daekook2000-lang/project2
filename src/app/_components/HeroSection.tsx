@@ -4,7 +4,7 @@ export function HeroSection() {
   return (
     <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center">
+        <div className="text-center w-full">
           {/* 메인 헤드라인 */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             사진 한 장으로
@@ -31,11 +31,11 @@ export function HeroSection() {
           </div>
 
           {/* 히어로 이미지/일러스트레이션 */}
-          <div className="relative max-w-4xl mx-auto">
+          <div className="relative max-w-4xl mx-auto w-full">
             <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
               <div className="aspect-video bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl flex items-center justify-center relative overflow-hidden">
                 {/* 모바일 폰 목업 */}
-                <div className="w-64 h-96 bg-gray-900 rounded-3xl p-2 shadow-2xl">
+                <div className="w-64 h-96 bg-gray-900 rounded-3xl p-2 shadow-2xl mx-auto">
                   <div className="w-full h-full bg-white rounded-2xl overflow-hidden relative">
                     {/* 상태바 */}
                     <div className="h-6 bg-gray-50 flex items-center justify-between px-4 text-xs text-gray-600">

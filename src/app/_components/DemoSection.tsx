@@ -126,7 +126,7 @@ export function DemoSection() {
         </div>
 
         {/* 데모 인터페이스 */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto w-full flex justify-center">
           <div className="bg-gray-900 rounded-3xl p-4 shadow-2xl">
             {/* 폰 프레임 */}
             <div className="bg-white rounded-2xl overflow-hidden">
@@ -196,7 +196,7 @@ export function DemoSection() {
         </div>
 
         {/* 추가 정보 */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="text-center p-6">
             <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
